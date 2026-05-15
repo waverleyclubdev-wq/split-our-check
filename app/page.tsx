@@ -1,27 +1,29 @@
-import Calculator from "@/components/Calculator";
+import Calculator from "@/components/Calculator"; // or whatever your main component is named
 import SeoContent from "@/components/SeoContent";
+import AdBanner from "@/components/AdBanner";
 
 export default function Home() {
   return (
-    <>
-      {/* Added dark:bg-slate-950 and dark:border-slate-800 */}
-      <section id="calculator" className="w-full bg-slate-50 dark:bg-slate-950 pt-8 pb-16 px-4 border-b border-slate-200 dark:border-slate-800 transition-colors duration-200">
-        <div className="max-w-5xl mx-auto text-center mb-8">
-          {/* Added dark:text-white */}
-          <h1 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">
-            Split any check <span className="text-green-500">in seconds</span>
-          </h1>
-          {/* Added dark:text-slate-400 */}
-          <p className="text-slate-500 dark:text-slate-400 text-lg">Free restaurant & group check splitter. No sign-up needed.</p>
-        </div>
+    <div className="w-full pt-12">
+      
+      {/* SIDE-BY-SIDE LAYOUT WRAPPER */}
+      <div className="max-w-6xl mx-auto px-4 flex flex-col lg:flex-row gap-8 justify-center items-center lg:items-start">
         
-        <Calculator />
-      </section>
+        {/* Left Side: Your Actual Calculator */}
+        <div className="w-full max-w-xl flex-1">
+          <Calculator />
+        </div>
 
-      {/* Below the Fold SEO Content */}
-      <section id="how-it-works">
-        <SeoContent />
-      </section>
-    </>
+        {/* Right Side: The Sidebar Ad (Hidden on mobile, blocks on desktop) */}
+        <div className="hidden lg:block w-[300px] shrink-0 sticky top-24">
+          <AdBanner slot="1234567890" />
+        </div>
+
+      </div>
+
+      {/* SEO text stays cleanly underneath both */}
+      <SeoContent />
+      
+    </div>
   );
 }

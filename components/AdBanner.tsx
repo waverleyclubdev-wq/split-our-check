@@ -1,8 +1,9 @@
 "use client";
+
 import { useEffect } from "react";
 
 interface AdBannerProps {
-  slot: string; 
+  slot: string;
 }
 
 export default function AdBanner({ slot }: AdBannerProps) {
@@ -15,14 +16,12 @@ export default function AdBanner({ slot }: AdBannerProps) {
   }, []);
 
   return (
-    <div className="w-full max-w-4xl mx-auto my-6 overflow-hidden flex justify-center items-center min-h-[90px] bg-slate-100 dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-800">
+    <div className="w-[300px] h-[250px] mx-auto flex justify-center items-center bg-transparent overflow-hidden">
       <ins
         className="adsbygoogle"
-        style={{ display: "block", width: "100%" }}
+        style={{ display: "inline-block", width: "300px", height: "250px" }}
         data-ad-client="ca-pub-8495433546971861"
-        data-ad-slot={slot}                     
-        data-ad-format="auto"
-        data-full-width-responsive="true"
+        data-ad-slot={slot}
       />
     </div>
   );
