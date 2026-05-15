@@ -6,7 +6,7 @@ import { Minus, Plus, RefreshCw, Copy, CheckCircle2 } from "lucide-react";
 export default function Calculator() {
   const [bill, setBill] = useState<string>("");
   const [people, setPeople] = useState<number>(2);
-  const [tip, setTip] = useState<number>(15);
+  const [tip, setTip] = useState<number>(0); // <-- Default is now 0
   const [copied, setCopied] = useState(false);
 
   const billNum = parseFloat(bill) || 0;
@@ -24,7 +24,7 @@ export default function Calculator() {
   const handleReset = () => {
     setBill("");
     setPeople(2);
-    setTip(15);
+    setTip(0); // <-- Reset button now goes back to 0
   };
 
   return (
