@@ -3,8 +3,11 @@ import AdBanner from "@/components/AdBanner"; // <-- 1. Ad banner component impo
 
 export default function SeoContent() {
   return (
-    <div className="max-w-4xl mx-auto mt-24 px-4 text-slate-800 pb-20">  
-        
+    <div className="max-w-4xl mx-auto mt-24 px-4 text-slate-800 pb-20">
+      
+      {/* 2. Replaced the fake placeholder block with your real AdBanner component */}
+      <AdBanner slot="1234567890" />
+
       <h2 className="text-3xl font-bold text-center mb-12">How It Works</h2>
       <div className="grid md:grid-cols-3 gap-8 text-center mb-24">
         <div className="p-6">
