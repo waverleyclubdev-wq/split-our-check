@@ -35,7 +35,7 @@ export default function Calculator() {
         
         {/* Bill Total */}
         <div className="mb-6">
-          <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">How much was the total check?</label>
+          <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">How much is the total check?</label>
           <input
             type="text" 
             inputMode="decimal" 
