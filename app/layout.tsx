@@ -3,7 +3,8 @@ import Link from "next/link";
 import { ReceiptText } from "lucide-react";
 import Header from "@/components/Header";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import Script from "next/script"; // <-- 1. Script imported here
+import Script from "next/script";
+import { Analytics } from "@vercel/analytics/react"; // <-- 1. Analytics imported here
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -20,7 +21,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className="flex flex-col min-h-screen text-slate-900 bg-slate-50 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-200">
         
-        {/* 2. Global AdSense Script injected into the body with your ID */}
+        {/* Global AdSense Script injected into the body with your ID */}
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8495433546971861"
@@ -52,6 +53,9 @@ export default function RootLayout({
           </footer>
 
         </ThemeProvider>
+
+        {/* 2. Analytics component sitting invisibly at the bottom of the body */}
+        <Analytics />
 
       </body>
     </html>
