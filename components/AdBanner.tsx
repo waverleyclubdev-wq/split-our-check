@@ -11,19 +11,35 @@ export default function AdBanner({ slot, format = "responsive" }: AdBannerProps)
   const adLoaded = useRef(false);
 
   useEffect(() => {
-    if (!adLoaded.current) {
-      adLoaded.current = true;
-      try {
-        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
-      } catch (error: any) {
-        if (error.message && !error.message.includes("already have ads")) {
-          console.error("AdSense error:", error);
+    // Helper function to push the ad safely
+    const pushAd = () => {
+      if (!adLoaded.current) {
+        try {
+          const adsbygoogle = (window as any).adsbygoogle;
+          if (adsbygoogle) {
+            adsbygoogle.push({});
+            adLoaded.current = true;
+          }
+        } catch (error: any) {
+          if (error.message && !error.message.includes("already have ads")) {
+            console.error("AdSense error:", error);
+          }
         }
       }
-    }
+    };
+
+    // Poll to ensure the script is loaded before pushing the ad
+    const interval = setInterval(() => {
+      if ((window as any).adsbygoogle) {
+        pushAd();
+        clearInterval(interval);
+      }
+    }, 250);
+
+    // Clear interval on unmount
+    return () => clearInterval(interval);
   }, []);
 
-  // Added max-h-[250px] so even massive screens don't get page-breaking giant ads
   const wrapperClass = 
     format === "horizontal" ? "w-full max-w-[728px] h-[90px]" : 
     format === "rectangle" ? "w-[300px] h-[250px]" : 
@@ -38,12 +54,11 @@ export default function AdBanner({ slot, format = "responsive" }: AdBannerProps)
           textAlign: "center", 
           width: "100%", 
           height: format === "responsive" ? "auto" : (format === "horizontal" ? "90px" : "250px"),
-          maxHeight: "250px", // Strict limit for Google's code
+          maxHeight: "250px",
           background: "transparent" 
         }}
         data-ad-client="ca-pub-8495433546971861"
         data-ad-slot={slot}
-        // This is the magic line! We forbid vertical ads here.
         data-ad-format={format === "responsive" ? "horizontal, rectangle" : undefined}
         data-full-width-responsive={format === "responsive" ? "true" : "false"}
       />
