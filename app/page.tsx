@@ -25,7 +25,7 @@ export default function Home() {
         {/* RESPONSIVE INLINE AD (Fills the space beautifully) */}
         <div className="w-full max-w-4xl mx-auto mt-12">
           {/* Note: You will need to replace "YOUR_INLINE_SLOT_ID" with the actual 10-digit code Google gives you once approved */}
-          <AdBanner slot="YOUR_INLINE_SLOT_ID" format="responsive" />
+          <AdBanner slot="5346167344" format="responsive" />
         </div>
 
       </section>
