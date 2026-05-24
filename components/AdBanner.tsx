@@ -11,7 +11,7 @@ export default function AdBanner({ slot, format = "responsive" }: AdBannerProps)
   const adLoaded = useRef(false);
 
   useEffect(() => {
-    // Helper function to push the ad safely
+    // Helper function to push the ad safely//
     const pushAd = () => {
       if (!adLoaded.current) {
         try {
